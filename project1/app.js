@@ -1,20 +1,18 @@
-// npm i lite-server --save-dev
-function add(n1, n2, showResult, phrase) {
-    // if (typeof n1 !== 'number' || typeof n2 !== 'number') {
-    //     throw new Error('Incorrect input!')
-    // }
-    var result = n1 + n2;
-    if (showResult)
-        console.log(phrase + result);
-    else
-        return n1 + n2;
+var person = {
+    // const person = { // better sintax
+    name: 'Luis',
+    age: 17,
+    hobbies: ['Baskatball', 'Reading'],
+    role: [2, 'author']
+};
+// person.role.push("admin")   // pushes an element to the tuple
+// person.role[1] = 10  // returns an error, 'cause the second position should be a string
+// person.role = [0, 'admin', 'user']  // gives an error 'cause it should only contain 2 elements
+var favoriteActivities; // any[] allows an array all types, it's different from string[]
+favoriteActivities = ['Sports', 1];
+for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
+    var hobby = _a[_i];
+    console.log(hobby.toUpperCase());
+    // console.log(hobby.map())  // !!! ERROR !!!
 }
-// let number: number   // tells it will store a number value
-// number = 5
-// let number1: number = 5 
-var number1 = 5;
-var number2 = 2.8;
-var printResult = true;
-var resultPhrase = 'Result is: '; // initializes as a string
-// resultPhrase = 0 // typescript don't allow us to change the type of a variable
-add(number1, number2, printResult, resultPhrase);
+console.log(person.name);
