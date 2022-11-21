@@ -1,26 +1,30 @@
-const person: {
-    name: string
-    age: number
-    hobbies: string[]
-    role: [number, string]  // tells the js that the first element should be a number and the second a string
-} = {
-// const person = { // better sintax
-    name: 'Luis',
-    age: 17,
-    hobbies: ['Baskatball', 'Reading'],
-    role: [2, 'author']
+// type Aliases
+type Combinable = number | string   // creates a type
+type ConversionDescriptor = 'as-number' | 'as-text' // creates a type
+
+// ---------------------------------
+function combine(
+    input1: Combinable,
+    input2: number | string,   // -> union types 
+    resultConversion: ConversionDescriptor  // 'as-number' | 'as-text' -> literal type 
+) {
+    let result: string | number
+    if (typeof input1 === 'number' && typeof input2 === 'number' || resultConversion === 'as-number') {
+        result = +input1 + +input2
+    } 
+    else result = input1.toString() + input2.toString()
+    return result
 }
 
-// person.role.push("admin")   // pushes an element to the tuple
-// person.role[1] = 10  // returns an error, 'cause the second position should be a string
-// person.role = [0, 'admin', 'user']  // gives an error 'cause it should only contain 2 elements
+// -------------------------------------
+// combines the numbers
+const combinedAges = combine(17, 10, 'as-number')
+console.log(combinedAges)
 
-let favoriteActivities: any[]   // any[] allows an array all types, it's different from string[]
-favoriteActivities = ['Sports', 1]
+// forces the string-number to convert and combine them
+const combinedStringAges = combine('30', '26', 'as-number')
+console.log(combinedStringAges)
 
-for(const hobby of person.hobbies){
-    console.log(hobby.toUpperCase())
-    // console.log(hobby.map())  // !!! ERROR !!!
-}
-
-console.log(person.name)
+// combines the strings
+const combinedNames = combine('Luis', ' Felipe', 'as-text')
+console.log(combinedNames)

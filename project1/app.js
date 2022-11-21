@@ -1,18 +1,22 @@
-var person = {
-    // const person = { // better sintax
-    name: 'Luis',
-    age: 17,
-    hobbies: ['Baskatball', 'Reading'],
-    role: [2, 'author']
-};
-// person.role.push("admin")   // pushes an element to the tuple
-// person.role[1] = 10  // returns an error, 'cause the second position should be a string
-// person.role = [0, 'admin', 'user']  // gives an error 'cause it should only contain 2 elements
-var favoriteActivities; // any[] allows an array all types, it's different from string[]
-favoriteActivities = ['Sports', 1];
-for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
-    var hobby = _a[_i];
-    console.log(hobby.toUpperCase());
-    // console.log(hobby.map())  // !!! ERROR !!!
+// ---------------------------------
+function combine(input1, input2, // -> union types 
+resultConversion // 'as-number' | 'as-text' -> literal type 
+) {
+    var result;
+    if (typeof input1 === 'number' && typeof input2 === 'number' || resultConversion === 'as-number') {
+        result = +input1 + +input2;
+    }
+    else
+        result = input1.toString() + input2.toString();
+    return result;
 }
-console.log(person.name);
+// -------------------------------------
+// combines the numbers
+var combinedAges = combine(17, 10, 'as-number');
+console.log(combinedAges);
+// forces the string-number to convert and combine them
+var combinedStringAges = combine('30', '26', 'as-number');
+console.log(combinedStringAges);
+// combines the strings
+var combinedNames = combine('Luis', ' Felipe', 'as-text');
+console.log(combinedNames);
